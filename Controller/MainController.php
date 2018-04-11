@@ -17,19 +17,16 @@ class MainController extends BaseController
     {
         if(isset($_POST['username']) && isset($_POST['firstName'])
         && isset($_POST['lastName']) && isset($_POST['email'])
-        && isset($_POST['address']) && isset($_POST['addresscode'])
         && isset($_POST['password']) && isset($_POST['passwordVerify'])
         && isset($_POST['submit'])){
             $username = htmlentities($_POST['username']);
             $firstName = htmlentities($_POST['firstName']);
             $lastName = htmlentities($_POST['lastName']);
             $email = htmlentities($_POST['email']);
-            $address = htmlentities($_POST['address']);
-            $addressCode = htmlentities($_POST['addresscode']);
             $password = $_POST['password'];
             $passwordVerify = $_POST['passwordVerify'];
             $manager = new UserManager();
-            /*$sendUserDatas = */$manager->registerUser($username, $firstName, $lastName, $email, $address, $addressCode, $password, $passwordVerify);
+            /*$sendUserDatas = */$manager->registerUser($username, $firstName, $lastName, $email, $password, $passwordVerify);
             $this->redirect('?action=login');
         }
         return $this->render('register.html.twig');

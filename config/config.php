@@ -3,7 +3,7 @@
 $config = [
     'homepage_route' => 'home',
     'db' => [
-        'name'     => 'rekooc',
+        'name'     => 'twttr',
         'user'     => 'root',
         'password' => '',
         'host'     => '127.0.0.1',
