@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+{% use 'header.html.twig' %}
+
+{% block page_title %}Twttr{% endblock %}
+
+{% block header_title %} HOME {% endblock %}
+
+{% block content %}
+<h1 class="nav">
+    <small>Work In Progress</small><br>
+    {% if user['username'] is defined %}
+        <a href="?action=profile">Your Profile</a>
+    {% else %}
+        <a href="?action=register">Register on Twttr</a><br>
+        <a href="?action=login">Login onto the Twttr</a><br>
+    {% endif %}
+{% endblock %}

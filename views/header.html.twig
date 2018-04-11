@@ -1,0 +1,6 @@
+{% block header %}
+{% if user['username'] is defined %}
+<a href="?action=logout">Déconnexion</a><br>
+<a href="?action=profile">{{ user['username'] }}</a><br>
+{% endif %}
+{% endblock %}

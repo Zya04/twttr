@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+{% use 'header.html.twig' %}
+
+{% block page_title %}Twttr -- Login{% endblock %}
+
+{% block header_title %} LOGIN {% endblock %}
+
+{% block content %}
+<form action="?action=login" method="POST">
+    <input type="text" placeholder="username" name="username"><br>
+    <input type="password" placeholder="password" name="psw"><br>
+    <button type="submit" name="submit">Login</button>
+</form>
+    {% if errors is defined %}
+        <div class="error_block">{{ errors }}</div>
+    {% endif %}
+    <a href="?action=home">Go back to homepage</a>
+{% endblock %}
