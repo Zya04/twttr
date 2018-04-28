@@ -10,10 +10,10 @@ class TweetController extends BaseController
         if(isset($_POST['tweet'])
         && isset($_POST['message'])) {
             $message = htmlentities($_POST['message']);
-            // var_dump($message);
-            // die();
+            $creation = date('Y-m-d H:i:s');
+            $username = $_SESSION['username'];
             $manager = new TweetManager();
-            $manager->sendMessage($message);
+            $manager->sendMessage($message, $creation, $username);
         }
         $arr = [
             'user' => $_SESSION
