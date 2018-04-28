@@ -14,6 +14,7 @@ $config = [
         'register' => 'Main:register',
         'login' => 'Main:login',
         'logout' => 'Main:logout',
-        'profile' => 'Main:profile'
+        'profile' => 'Main:profile',
+        'tweet' => 'Tweet:message'
     ]
 ];
