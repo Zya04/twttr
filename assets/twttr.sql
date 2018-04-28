@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 28 avr. 2018 à 18:21
+-- Généré le :  sam. 28 avr. 2018 à 21:20
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -31,17 +31,18 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `message_id` smallint(6) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
   `message` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`message_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `message`
 --
 
-INSERT INTO `message` (`message_id`, `message`) VALUES
-(1, 'test message'),
-(2, 'serdtfyguh');
+INSERT INTO `message` (`message_id`, `username`, `message`, `creation`) VALUES
+(1, 'kainister', 'Salut tout le monde', '2018-04-28 21:07:11');
 
 -- --------------------------------------------------------
 
