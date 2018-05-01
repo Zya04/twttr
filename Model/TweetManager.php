@@ -18,4 +18,20 @@ class TweetManager
 
         $stmt->execute(); 
     }
+
+    public function getMessage()
+    {
+        $link = mysqli_connect("localhost", "root", "", "twttr");
+
+        $result = mysqli_query($link, "SELECT message FROM message");
+        $data = [];
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+
+        mysqli_free_result($result);
+        return $data;
+    
+    }
 }
