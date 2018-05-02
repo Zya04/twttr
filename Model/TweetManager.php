@@ -23,7 +23,7 @@ class TweetManager
     {
         $link = mysqli_connect("localhost", "root", "", "twttr");
 
-        $result = mysqli_query($link, "SELECT message FROM message");
+        $result = mysqli_query($link, "SELECT * FROM message ORDER BY message_id DESC");
         $data = [];
 
         while ($row = mysqli_fetch_assoc($result)) {

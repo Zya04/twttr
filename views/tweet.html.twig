@@ -13,7 +13,7 @@
 
     <div>
         {% for tweet in messages %}
-            <p>{{ tweet['message'] }} </p>
+            <p><span class="username"><i>[ {{ tweet['creation']}} ] {{ tweet['username'] }} SAID: </i></span>{{ tweet['message'] }} </p>
         {% endfor %}
     </div>
 {% endblock %}

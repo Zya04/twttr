@@ -58,12 +58,13 @@ textarea{
     width: 500px;
 }
 
+.username {
+    background-color: darkgray;
+}
+
 p {
-    width: 200px;
-    height: 50px;
     word-wrap: break-word;
     text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
 }
 
