@@ -5,12 +5,12 @@ require_once('Model/UserManager.php');
 
 class MainController extends BaseController
 {
-    public function homeAction()
+    public function hallAction()
     {
         $arr = [
             'user' => $_SESSION
         ];
-        return $this->render('home.html.twig', $arr);
+        return $this->render('hall.html.twig', $arr);
     }
 
     public function registerAction()
@@ -33,7 +33,7 @@ class MainController extends BaseController
         return $this->render('register.html.twig');
         }
         else {
-            return $this->redirect('?action=profile');
+            return $this->redirect('?action=home');
         }
        
     }
@@ -65,7 +65,7 @@ class MainController extends BaseController
             }
         }
         else {
-            return $this->redirect('?action=profile');
+            return $this->redirect('?action=home');
         }
         
     }
@@ -73,7 +73,7 @@ class MainController extends BaseController
     public function logoutAction()
     {
         session_destroy();
-        return $this->redirect('?action=home');
+        return $this->redirect('?action=hall');
     }
 
     public function profileAction()
@@ -85,7 +85,7 @@ class MainController extends BaseController
             return $this->render('profile.html.twig', $arr);
         }
         else {
-            return $this->redirect('?action=home');
+            return $this->redirect('?action=hall');
         }
            
     }

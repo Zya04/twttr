@@ -1,14 +1,14 @@
 <?php
 
 require_once('Cool/BaseController.php');
-require_once('Model/TweetManager.php');
+require_once('Model/HomeManager.php');
 
-class TweetController extends BaseController
+class HomeController extends BaseController
 {
     public function messageAction()
     {
         if(isset($_SESSION['username'])) {
-            if(isset($_POST['tweet'])
+            if(isset($_POST['tweetBtn'])
             && isset($_POST['message'])) {
                 $message = htmlentities($_POST['message']);
                 $creation = date('Y-m-d H:i:s');
@@ -22,10 +22,10 @@ class TweetController extends BaseController
                 'user' => $_SESSION,
                 'messages' => $message
             ];
-            return $this->render('tweet.html.twig', $arr);
+            return $this->render('home.html.twig', $arr);
         }
         else {
-            return $this->redirect('?action=home');
+            return $this->redirect('?action=hall');
         }
     
     }

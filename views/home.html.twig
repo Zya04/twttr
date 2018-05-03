@@ -1,18 +1,19 @@
 {% extends 'layout.html.twig' %}
 {% use 'header.html.twig' %}
 
-{% block page_title %}Twttr{% endblock %}
+{% block page_title %}Twttr -- Profile{% endblock %}
 
-{% block header_title %} HOME {% endblock %}
+{% block header_title %} {{ user['username'] }} {% endblock %}
 
 {% block content %}
-<h1 class="nav">
-    <small>Work In Progress</small><br>
-    {% if user['username'] is defined %}
-        <a href="?action=profile">Your Profile</a>
-        <a href="?action=tweet">Send a twtt</a>
-    {% else %}
-        <a href="?action=register">Register on Twttr</a><br>
-        <a href="?action=login">Login onto the Twttr</a><br>
-    {% endif %}
+    <form action="?action=home" method="POST">
+        <textarea name="message" class="message" cols="10" rows="3" placeholder="send a message..."></textarea><br>
+        <button type="submit" name="tweetBtn">twtt</button>
+    </form>
+
+    <div>
+        {% for tweet in messages %}
+            <p><span class="username"><i>[ {{ tweet['creation']}} ] {{ tweet['username'] }} SAID: </i></span>{{ tweet['message'] }} </p>
+        {% endfor %}
+    </div>
 {% endblock %}

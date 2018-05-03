@@ -1,7 +1,7 @@
 <?php
 
 $config = [
-    'homepage_route' => 'home',
+    'homepage_route' => 'hall',
     'db' => [
         'name'     => 'twttr',
         'user'     => 'root',
@@ -10,11 +10,11 @@ $config = [
         'port'     => 3306
     ],
     'routes' => [
-        'home'    => 'Main:home',
+        'hall'    => 'Main:hall',
         'register' => 'Main:register',
         'login' => 'Main:login',
         'logout' => 'Main:logout',
         'profile' => 'Main:profile',
-        'tweet' => 'Tweet:message'
+        'home' => 'Home:message'
     ]
 ];
