@@ -13,10 +13,10 @@ class HomeController extends BaseController
                 $message = htmlentities($_POST['message']);
                 $creation = date('Y-m-d H:i:s');
                 $username = $_SESSION['username'];
-                $manager = new TweetManager();
+                $manager = new HomeManager();
                 $manager->sendMessage($message, $creation, $username);
             }
-            $manager = new TweetManager();
+            $manager = new HomeManager();
             $message = $manager->getMessage();
             $arr = [
                 'user' => $_SESSION,
