@@ -56,9 +56,10 @@ input {
 textarea{
     height: 100px;
     width: 500px;
+    resize: none;
 }
 
-.username {
+.date {
     background-color: darkgray;
 }
 
@@ -68,3 +69,7 @@ p {
     overflow: hidden;
 }
 
+.errorBlock {
+    color: #dd4444;
+    font-weight: bold;
+}
