@@ -2,7 +2,7 @@
 
 require_once('Cool/DBManager.php');
 
-class TweetManager
+class HomeManager
 {
     public function sendMessage($message, $creation, $user)
     {

@@ -15,6 +15,7 @@ $config = [
         'login' => 'Main:login',
         'logout' => 'Main:logout',
         'profile' => 'Main:profile',
-        'home' => 'Home:message'
+        'home' => 'Home:page',
+        'message' => 'Home:message'
     ]
 ];

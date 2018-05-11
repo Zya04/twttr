@@ -6,14 +6,17 @@
 {% block header_title %} {{ user['username'] }} {% endblock %}
 
 {% block content %}
-    <form action="?action=home" method="POST">
-        <textarea name="message" class="message" cols="10" rows="3" placeholder="send a message..."></textarea><br>
-        <button type="submit" name="tweetBtn">twtt</button>
-    </form>
+    <section class="chat">
+        <div class="user-inputs">
+            <form action="?action=home" method="POST">
+                <p class="errorBlock"></p>
+                <textarea id="content" name="content" placeholder="Send a Twtt"></textarea><br>
+                <button type="submit">🔥 Send !</button>
+            </form>
+        </div>
+        <div class="messages">
 
-    <div>
-        {% for tweet in messages %}
-            <p><span class="username"><i>[ {{ tweet['creation']}} ] {{ tweet['username'] }} SAID: </i></span>{{ tweet['message'] }} </p>
-        {% endfor %}
-    </div>
+        </div>
+    </section>
+    <script src="assets/js/script.js"></script>
 {% endblock %}
