@@ -14,7 +14,7 @@ class HomeController extends BaseController
             $manager = new HomeManager();
             if(count($data) == 1){
                 $username = $_SESSION['username'];
-                $message = $data['content'];
+                $message = htmlentities($data['content']);
                 $creation = date('Y-m-d H:i:s');
                 $manager->sendMessage($message, $creation, $username);
                 $result['success'] = 'ok';
