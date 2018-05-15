@@ -18,6 +18,9 @@ class HomeController extends BaseController
                 $creation = date('Y-m-d H:i:s');
                 $manager->sendMessage($message, $creation, $username);
                 $result['success'] = 'ok';
+                $logs = fopen('logs/access.log', 'a+');
+                fwrite($logs, $_SESSION['username'].' just write a message at '. $creation."\n");
+                fclose($logs);
                 return json_encode($result);
 
             } else {
@@ -25,6 +28,9 @@ class HomeController extends BaseController
             }
         }
         else {
+            $logs = fopen('logs/security.log', 'a+');
+            fwrite($logs,'Someone just tried to backdoor at '.date('Y-m-d H:i:s')."\n");
+            fclose($logs);
             return $this->redirect('?action=hall');
         }
     }
@@ -38,6 +44,9 @@ class HomeController extends BaseController
             return $this->render('home.html.twig', $arr);
         }
         else {
+            $logs = fopen('logs/security.log', 'a+');
+            fwrite($logs,'Someone just tried to backdoor at '.date('Y-m-d H:i:s')."\n");
+            fclose($logs);
             return $this->redirect('?action=hall');
         }
 

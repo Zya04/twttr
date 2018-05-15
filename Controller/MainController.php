@@ -16,10 +16,10 @@ class MainController extends BaseController
     public function registerAction()
     {
         if (!isset($_SESSION['username'])) {
-            if(isset($_POST['username']) && isset($_POST['firstName'])
-            && isset($_POST['lastName']) && isset($_POST['email'])
-            && isset($_POST['password']) && isset($_POST['passwordVerify'])
-            && isset($_POST['submit'])){
+            if(!empty($_POST['username']) && !empty($_POST['firstName'])
+                && !empty($_POST['lastName']) && !empty($_POST['email'])
+                && !empty($_POST['password']) && !empty($_POST['passwordVerify'])
+                && !empty($_POST['submit'])){
                 $username = htmlentities($_POST['username']);
                 $firstName = htmlentities($_POST['firstName']);
                 $lastName = htmlentities($_POST['lastName']);
@@ -29,20 +29,29 @@ class MainController extends BaseController
                 $manager = new UserManager();
                 $manager->registerUser($username, $firstName, $lastName, $email, $password, $passwordVerify);
                 $this->redirect('?action=login');
-        }
-        return $this->render('register.html.twig');
+            } else
+            {
+                $arr = [
+                    'errors' => 'ALL field are requierd'
+                ];
+                return $this->render('register.html.twig', $arr);
+            }
+            return $this->render('register.html.twig');
         }
         else {
+            $logs = fopen('logs/security.log', 'a+');
+            fwrite($logs, $_SESSION['username'].' just tried to hack at '.date('Y-m-d H:i:s')."\n");
+            fclose($logs);
             return $this->redirect('?action=home');
         }
-       
+
     }
 
     public function loginAction()
     {
         if (!isset($_SESSION['username'])) {
             if(isset($_POST['username']) && isset($_POST['psw'])
-            && $_SERVER['REQUEST_METHOD'] === 'POST')
+                && $_SERVER['REQUEST_METHOD'] === 'POST')
             {
                 $username = htmlentities($_POST['username']);
                 $password = $_POST['psw'];
@@ -65,9 +74,12 @@ class MainController extends BaseController
             }
         }
         else {
+            $logs = fopen('logs/security.log', 'a+');
+            fwrite($logs, $_SESSION['username'].' just tried to hack at '.date('Y-m-d H:i:s')."\n");
+            fclose($logs);
             return $this->redirect('?action=home');
         }
-        
+
     }
 
     public function logoutAction()
@@ -87,6 +99,6 @@ class MainController extends BaseController
         else {
             return $this->redirect('?action=hall');
         }
-           
+
     }
 }
