@@ -44,7 +44,6 @@ class MainController extends BaseController
             fclose($logs);
             return $this->redirect('?action=home');
         }
-
     }
 
     public function loginAction()

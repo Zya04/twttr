@@ -14,8 +14,10 @@ $config = [
         'register' => 'Main:register',
         'login' => 'Main:login',
         'logout' => 'Main:logout',
-        'profile' => 'Main:profile',
+        'profile' => 'User:profile',
         'home' => 'Home:page',
-        'message' => 'Home:message'
+        'message' => 'Home:message',
+        'user' => 'User:user',
+        'follow' => 'Home:follow'
     ]
 ];

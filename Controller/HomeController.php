@@ -51,4 +51,23 @@ class HomeController extends BaseController
         }
 
     }
+
+    function followAction(){
+        //var_dump($_SESSION['user_id']);
+        //var_dump($_GET['id']);
+        if (isset($_GET['id']) AND $_GET['id'] > 0) {
+            $getid = intval($_GET['id']);
+
+            $dbm = DBManager::getInstance();
+            $pdo = $dbm->getPdo();
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = :userid");
+            $stmt->bindParam(':userid', $getid);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            //var_dump($result);
+            
+        }
+        $manager = new HomeManager();
+        $manager -> follow();   
+    }
 }

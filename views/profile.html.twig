@@ -7,6 +7,7 @@
 
 {% block content %}
     <a href="?action=home">Send a twtt</a>
+    <a href="?action=follow&id=" {{ userToFollow }}>Suivre cette personne</a>
 
     <div class="messages">
     {% for key, dada in data %}
