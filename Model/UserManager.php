@@ -40,7 +40,24 @@ class UserManager
             return $errors;
         } else {
             $_SESSION['username'] = $user;
+            $_SESSION['user_id'] = $result['user_id'];
             return $user;
         }
+    }
+
+    public function getUserProfile($userProfileId)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+
+        $stmt = $pdo->prepare("SELECT * FROM `users` 
+          LEFT JOIN message ON users.username = message.username
+          WHERE user_id = ? ORDER BY message_id DESC");
+
+        $stmt->execute([$userProfileId]);
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $result;
+
     }
 }

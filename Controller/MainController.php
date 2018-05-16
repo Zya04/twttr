@@ -91,10 +91,18 @@ class MainController extends BaseController
     public function profileAction()
     {
         if (isset($_SESSION['username'])) {
+            $manager = new UserManager();
+            $data = $manager->getUserProfile($_GET["id"]);
             $arr = [
-                'user' => $_SESSION
+                'user' => $_SESSION,
+                'data' => $data
             ];
-            return $this->render('profile.html.twig', $arr);
+
+            if (!empty($data)){
+                return $this->render('profile.html.twig', $arr);
+            } else {
+                return $this->redirect('?action=home');
+            }
         }
         else {
             return $this->redirect('?action=hall');

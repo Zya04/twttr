@@ -9,7 +9,7 @@
 <h1 class="nav">
     <small>Work In Progress</small><br>
     {% if user['username'] is defined %}
-        <a href="?action=profile">Your Profile</a>
+        <a href="?action=profile&id={{ user['user_id'] }}">Your Profile</a>
         <a href="?action=home">Send a twtt</a>
     {% else %}
         <a href="?action=register">Register on Twttr</a><br>

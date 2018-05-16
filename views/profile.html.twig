@@ -3,8 +3,20 @@
 
 {% block page_title %}Twttr -- Profile{% endblock %}
 
-{% block header_title %} {{ user['username'] }} {% endblock %}
+{% block header_title %} {{ data[0]['username'] }} {% endblock %}
 
 {% block content %}
     <a href="?action=home">Send a twtt</a>
+
+    <div class="messages">
+    {% for key, dada in data %}
+        <div class="message">
+            <span class="date">{{ data[key]["creation"] }}</span>
+            <span class="author">{{ data[key]["username"] }}</span> :
+            <hr>
+            <span class="content">{{ data[key]['message'] }}</span>
+        </div>
+    {% endfor %}
+    </div>
+
 {% endblock %}
