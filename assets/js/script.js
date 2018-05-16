@@ -8,19 +8,32 @@ function getMessages(){
     request.onload = function(){
         const resultat = JSON.parse(request.responseText);
         const html = resultat.map(function(message){
-            return `
+        return `
         <div class="message">
           <span class="date">${message.creation}</span>
-          <span class="author">${message.username}</span> : 
-          <span class="content">${message.message}</span>
-        </div>
-      `;
+          <span class="author"><a href="?action=profile">${message.username}</a></span> : 
+          <hr>
+          <span class="content">${message.message}</span> <br>
+          <span class="rtBtn"> <i class="fas fa-retweet"></i> </span>
+          <span class="rtBtn"> <i class="fas fa-heart"></i> </span>
+        </div>`;
         }).join('');
 
         const messages = document.querySelector('.messages');
 
         messages.innerHTML = html;
         messages.scrollTop = messages.scrollHeight;
+
+
+        const rtBtn = document.querySelectorAll('.rtBtn');
+        for (var i in rtBtn) {
+            console.log('test');
+            
+            rtBtn[i].onclick = function () {
+                console.log('coucou');
+            }
+        };
+
     };
 
     request.send();
@@ -60,3 +73,8 @@ document.querySelector('form').addEventListener('submit', postMessage);
 //const interval = window.setInterval(getMessages, 3000);
 
 getMessages();
+
+function alreadyRt() {
+    console.log('sakr');
+}
+  

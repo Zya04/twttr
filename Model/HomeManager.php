@@ -40,26 +40,25 @@ class HomeManager
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $getFollowId = intval($_GET['id']);
+        //var_dump($getFollowId);
 
-        $link = mysqli_connect("localhost", "root", "", "twttr");
-
-        $getFollowId = intval($_GET['followedid']);
-
-        if($getFollowId != $_SESSION['id'])
+        if($getFollowId != $_SESSION['user_id'])
         {
-            $alreadyFollowed = $pdo->prepare('SELECT * FROM follow WHERE id_followed = ? AND id_following = ?');
-            $alreadyFollowed->execute(array($_SESSION['user_id'], getFollowId));
+            $alreadyFollowed = $pdo->prepare('SELECT * FROM follow WHERE id_followed = ? AND id_follower = ?');
+            $alreadyFollowed->execute(array($getFollowId, $_SESSION['user_id']));
             $alreadyFollowed = $alreadyFollowed->rowCount();
 
             if($alreadyFollowed == 0)
             {
-                $addFollow = $pdo->prepare('INSERT INTO follow(id_follower, id_following) VALUES (?,?)');
-                $addFollow->execute(array($_SESSION['user_id'], getFollowId));
-
+                $addFollow = $pdo->prepare('INSERT INTO follow (`follow_id`, `id_follower`, `id_followed`) VALUES  (NULL, `:id_follower`, `:id_followed`)');
+                $addFollow->bindParam(':id_follower', $_SESSION['user_id']);
+                $addFollow->bindParam(':id_followed', $_GET['id']);
+                $addFollow->execute();
             } elseif ($alreadyFollowed == 1) 
             {
-                $deleteFollow = $pdo->prepare('DELETE FROM follow WHERE id_follower = ? AND id_following = ?');
-                $deleteFollow->execute(array($_SESSION['user_id'], getFollowId));
+                $deleteFollow = $pdo->prepare('DELETE FROM follow WHERE id_follower = ? AND id_followed = ?');
+                $deleteFollow->execute($getFollowId, $_SESSION['user_id']);
             }
         }
     }

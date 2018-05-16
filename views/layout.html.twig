@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>{% block page_title %}{% endblock %}</title>
     <link rel="stylesheet" href="assets/style/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
   </head>
   <body>
-  <header><h2 class="header"> Twttr | {% block header_title %} {% endblock %}</h2></header>
+  <header><h2 class="header">{% block header_title %} {% endblock %}</h2></header>
   {% block header %}{% endblock %}
   {% block content %}{% endblock %}
   </body>
